@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Innox_CategoryAtribute>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Innox_CategoryAtribute>
+    </modules>
+</config>

@@ -1,0 +1,106 @@
+<?php 
+
+$_category = $this->getCurrentCategory();
+$_helper    = $this->helper('catalog/output');
+$linksBoxes = $this->getJcf("enhanced_category_links_box");
+$linksHeading = $_category->getData('ec_links_heading');
+
+?>
+
+<style>
+div.brand_page_container.maincontainer div.shop_by_treatment { border-top: 0px }
+div.brand_page_container.maincontainer div.shop_by_treatment div.boxes div.box { position: relative; border-radius: 1px; padding-bottom: 30px }
+div.brand_page_container.maincontainer div.shop_by_treatment div.boxes div.box div.link { position: absolute; width: 100%; bottom: 20px }
+div.brand_page_container div.shop_by_treatment div.boxes div.box div.link a:after { margin-left: 8px; content : "\f105"; font-weight: 900; font-family: "Font Awesome 5 Free"; }
+div.brand_page_container div.shop_by_treatment div.boxes div.box.external div.link a:after { content : "\f35d"; }
+
+@media only screen and (min-width: 768px) { 
+	div.brand_page_container.maincontainer div.shop_by_treatment div.boxes div.box {  margin: 0px; float: left;  margin-left: 2%;  min-height: 130px;  width: 23%; }
+	div.brand_page_container.maincontainer div.shop_by_treatment div.boxes div.box:first-child { margin-left: 0 }
+}
+</style>
+<?php
+
+if($linksBoxes && count($linksBoxes) > 0) {
+	
+	?>
+	<div class="ec shop_by_treatment">
+	<?php 
+	if($linksHeading && strlen($linksHeading) > 0)
+	{ ?>
+		<div class="title bkline enhanced">
+			<h3><span>
+				<?php echo $linksHeading; ?>
+			</span></h3>				
+		</div>
+		<?php 
+	}
+	
+	?>
+	
+	<div class="boxes"> 
+	    <?php 
+			foreach($linksBoxes as $linksBox) {
+				
+			   $_hclass = "";
+			   $_content = "";
+				
+				if($linksBox["description"]) 
+				{
+					 $_hclass = "reduced";
+					 $_content = "<p>".$linksBox["description"]."</p>";					 
+				}
+				if(!$linksBox["text"] || strlen($linksBox["text"]) < 1)
+				{
+					 //no heading, no box
+					 continue;
+				}
+				
+				if($linksBox["url"] && substr($linksBox["url"],0,4) == "http" && strpos($linksBox["url"],"chemist-4-u.com") === FALSE)
+				{
+					$_hclass .= " external";
+					// flag external links
+				}
+				?>
+			<div class="custom-border box <?php echo $_hclass; ?>">
+				<div class="title">
+						<h3 class="custom-font">
+						<?php 
+							echo $linksBox["text"];							
+							?>
+						</h3>
+						<?php
+							echo  $_content;
+							?>
+					</div>
+					<?php if($linksBox["url"]) { ?>
+						<div class="link">
+							<a class="custom-bg" href="<?php 
+							echo $linksBox["url"];							
+							?>">More </a>
+						</div>
+					<?php 
+					}
+					?>
+			</div>
+				
+				<?php 
+				
+		}
+		
+		?>
+	</div>
+	
+	
+
+
+	
+	
+	
+
+	</div>
+	
+	
+	<?php 
+	
+}

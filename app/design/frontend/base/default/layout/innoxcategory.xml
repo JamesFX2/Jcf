@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+
+<layout version="0.1.0">
+	<catalog_category_default>
+		<reference name="category.products">
+			<block type="categoryatribute/category_view_enhanced" name="category.products.enhanced" as="enhanced" template="catalog/category/view/enhanced.phtml"/>
+			<block type="categoryatribute/category_view_enhanced" name="category.products.topblock" as="topblock" template="catalog/category/view/blocks.phtml">
+				<action method="setData"><name>blockId</name><value>enhanced_category_top_block</value></action>
+			</block>		
+			<block type="categoryatribute/category_view_enhanced" name="category.products.fancytop" as="fancytop" template="catalog/category/view/fancytop.phtml"/>
+			<block type="categoryatribute/category_view_enhanced" name="category.products.subboxes" as="subboxes" template="catalog/category/view/subboxes.phtml"/>
+			<block type="categoryatribute/category_view_enhanced" name="category.products.range" as="range" template="catalog/category/view/range.phtml"/>
+			<block type="categoryatribute/category_view_enhanced" name="category.products.twocolumn" as="twocolumn" template="catalog/category/view/twocolumn.phtml"/>
+			<block type="categoryatribute/category_view_enhanced" name="category.products.endblock" as="endblock" template="catalog/category/view/blocks.phtml">
+				<action method="setData"><name>blockId</name><value>enhanced_category_end_block</value></action>
+			</block>
+			<block type="categoryatribute/category_view_enhanced" name="category.products.footercta" as="footercta" template="catalog/category/view/footercta.phtml"/>
+			<block type="categoryatribute/category_view_enhanced" name="category.products.faqbox" as="faqbox" template="catalog/category/view/faqbox.phtml"/>			
+		</reference>
+	</catalog_category_default>
+	<catalog_category_layered>
+		<reference name="category.products">
+			<block type="categoryatribute/category_view_enhanced" name="category.products.enhanced" as="enhanced" template="catalog/category/view/enhanced.phtml"/>
+			<block type="categoryatribute/category_view_enhanced" name="category.products.topblock" as="topblock" template="catalog/category/view/blocks.phtml">
+				<action method="setData"><name>blockId</name><value>enhanced_category_top_block</value></action>
+			</block>		
+			<block type="categoryatribute/category_view_enhanced" name="category.products.fancytop" as="fancytop" template="catalog/category/view/fancytop.phtml"/>
+			<block type="categoryatribute/category_view_enhanced" name="category.products.subboxes" as="subboxes" template="catalog/category/view/subboxes.phtml"/>
+			<block type="categoryatribute/category_view_enhanced" name="category.products.range" as="range" template="catalog/category/view/range.phtml"/>
+			<block type="categoryatribute/category_view_enhanced" name="category.products.twocolumn" as="twocolumn" template="catalog/category/view/twocolumn.phtml"/>
+			<block type="categoryatribute/category_view_enhanced" name="category.products.endblock" as="endblock" template="catalog/category/view/blocks.phtml">
+				<action method="setData"><name>blockId</name><value>enhanced_category_end_block</value></action>
+			</block>
+			<block type="categoryatribute/category_view_enhanced" name="category.products.footercta" as="footercta" template="catalog/category/view/footercta.phtml"/>
+			<block type="categoryatribute/category_view_enhanced" name="category.products.faqbox" as="faqbox" template="catalog/category/view/faqbox.phtml"/>		
+		</reference>	
+	</catalog_category_layered>
+</layout>

@@ -1,0 +1,76 @@
+<?php 
+
+$_category = $this->getCurrentCategory();
+
+$rangeItems = $_category->getData("enhanced_category_slider");
+
+$rangeItems = $rangeItems !== NULL && $rangeItems !== "" ? explode(",",$rangeItems) : array();
+
+$rangeHeading = $_category->getData('ec_slider_title');
+
+if($rangeItems && count($rangeItems) > 0) { ?>
+
+<div class="ec intro_section custom-bg">
+
+<?php 
+if($rangeHeading && strlen($rangeHeading) > 0)
+	{ ?>
+		<div class="title bkline2 enhanced">
+			<h3 class="htitle2 custom-bg"><span class="custom-bg">
+				<?php echo $rangeHeading; ?>
+			</span></h3>				
+		</div>
+		<?php 
+	} 
+?>
+
+		<div class="introduction_products owl-carousel owl-theme">
+		<?php foreach($rangeItems as $item) 
+		{
+			
+			$_product = Mage::getModel("catalog/product")->load($item);
+			if($_product->getData('has_options')) {
+					$AddToCartURL = $_product->getProductUrl();
+				} else {
+					$AddToCartURL = Mage::getUrl('checkout/cart/add', array('product'=>$_product->getId(),'qty'=>1, 'form_key' => Mage::getSingleton('core/session')->getFormKey()));
+				}
+				
+				echo '<div class="productitem item"><div class="prdimg"><a href="'.$_product->getProductUrl().'"><img src="'.Mage::helper('catalog/image')->init($_product, 'image', $_product->getTransparentImage())->resize(300, 300).'" /></a></div><div class="prdname"><p class="contrast">'.$_product->getName().'</p> <p class="mt25"> <a href="'.$AddToCartURL.'" class="buynow">Buy Now</a></p></div></div>';
+				
+			
+			
+		} ?>
+
+		</div>
+	<script>
+	
+	var slides = [[1, true], [2, false], [3, true, false]];
+	$j('div.introduction_products.owl-carousel').owlCarousel({
+            loop: true,
+            margin: 10,
+            responsiveClass: true,
+            responsive: {
+                0: {
+                    items: slides[0][0],
+                    nav: slides[0][1]
+                },
+                600: {
+                    items: slides[1][0],
+                    nav: slides[1][1]
+                },
+                1000: {
+                    items: slides[2][0],
+                    nav: slides[2][1],
+                    loop: slides[2][2]
+                }
+            }
+        });
+	</script>
+</div>
+
+
+
+
+
+
+<?php } ?>

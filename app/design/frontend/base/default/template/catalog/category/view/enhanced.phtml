@@ -1,0 +1,39 @@
+<?php 
+
+$_category = $this->getCurrentCategory();
+$_ctacolour = $this->getColour('enhanced_category_colour');
+$_topbgcolour = $this->getColour('ec_top_bgcolor');
+$_boxbgcolour = $this->getColour('ec_box_bgcolor');
+$_boxbgcolourChecked = $_boxbgcolour && $_boxbgcolour !== "#FFFFFF" ? $_boxbgcolour : $_ctacolour;
+$_ctatext = $this->getColour('ec_cta_color');
+$_colours = $this->helper('categoryatribute')->colourCheck($_boxbgcolourChecked);
+?>
+
+<style>
+   div.brand_page_container .custom-border { border-color : <?php echo $_ctacolour; ?> !important}
+   div.brand_page_container div.brand_container_part1 { background-color: <?php echo $_topbgcolour; ?> }
+   div.brand_page_container .custom-font { color : <?php echo $_ctacolour; ?> !important }
+   div.brand_page_container div.ec_faqbox div.faqs#questioncontent div.faqtabs div.faqtab div.faq_tab_title div.title a.faq_title h3 { color: <?php echo $_ctacolour; ?> !important; filter: brightness(66%) }
+   <?php if($_ctacolour || $_boxbgcolourChecked) { ?> div.brand_page_container .custom-bg, div.brand_page_container div.ec_faqbox div.faqs { background-color : <?php echo $_boxbgcolourChecked; ?> !important } <?php } ?>
+   <?php if($_ctacolour) { ?> div.brand_page_container p.ptxt2 a.custom-bg, 
+   div.brand_page_container p.mt25 a.buynow, div.brand_page_container div.ec_faqbox div.faqs div.faqtabs div.faqtab div.faq_tab_title div.img,
+   div.brand_page_container div.shop_by_treatment div.link a.custom-bg { background-color : <?php echo $_ctacolour; ?> !important } <?php } ?>
+   div.brand_page_container div.ec div.txt ul li:before { border-bottom: solid 2px <?php echo $_ctacolour; ?> !important; border-right: 2px solid <?php echo $_ctacolour; ?> !important; content: ''; position: absolute; width: 8px; height: 8px; top: calc(50% - 5.5px);  left: -20px; transform: translateY(-50%) rotate(-45deg)  }
+   div.brand_page_container div.ec div.txt ul li { font-size: 14px; line-height: 1.4em; padding-bottom: 10px; position: relative} 
+   div.brand_page_container div.ec div.txt ul { margin: 12px 12px 12px 22px }
+   
+    
+
+
+
+   
+   div.ec { clear: both }
+   
+   div.brand_page_container.maincontainer div.shop_by_treatment div.title.bkline.enhanced h3:before { border-top: 2px solid <?php echo $_ctacolour; ?> !important;   }
+   <?php if($_colours == "black") { ?> div.brand_page_container.maincontainer .contrast { color: #111 !important } <?php  } 
+		else { ?>div.brand_page_container.maincontainer .contrast { color: #fff !important }
+		
+		<?php }   
+   ?>  
+</style>
+

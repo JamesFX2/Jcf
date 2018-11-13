@@ -1,0 +1,101 @@
+<?php 
+$_category = $this->getCurrentCategory();
+
+
+$faqboxes = $this->getRbt("ec_faqboxes");
+if($faqboxes && count($faqboxes))
+{
+	?><style>
+	
+	div.brand_page_container div.ec_faqbox div.faqs { padding: 2em 10em }
+	div.brand_page_container div.ec_faqbox div.faqs#questioncontent div.faqtabs div.faqtab div.faq_tab_title { background-color: white; display: flex; }
+	div.brand_page_container div.ec_faqbox div.faqs#questioncontent div.faqtabs div.faqtab div.faq_tab_title div.img { text-align: center; padding: 8px }
+	div.brand_page_container div.ec_faqbox div.faqs#questioncontent div.faqtabs div.faqtab div.faq_tab_title div.title a.faq_title h3 { line-height: 20px }
+	div.brand_page_container div.ec_faqbox div.faqs#questioncontent div.faqtabs div.faqtab div.faq_tab_title div.title { padding: 0 35px 0; display: flex; align-items: center }
+	div.brand_page_container div.ec_faqbox div.faqs#questioncontent > h2 { font-size: 24px; text-align: center }
+	div.brand_page_container div.ec_faqbox div.faqs div.faqtabs div.faqtab div.faqdetail { background-color: rgba(255,255,255,0.5) }
+	
+	@media only screen and (max-width:1279px) { 
+		div.brand_page_container div.ec_faqbox div.faqs { padding: 2em 2em }
+	}
+	</style>
+	<script>
+		document.addEventListener('click', function(event) {
+			var target = event.target;
+			
+			if(target && (target.matches('div.faq_tab_title *') || target.matches('div.faq_tab_title')))
+			{
+				event.preventDefault();
+				
+				var faqtab = target.closest ? target.closest ('div.faqtab') : null;
+				
+				if(faqtab)
+				{
+					var content = faqtab.querySelector('div.faqdetail');
+					if(content.style.display == "none" || content.style.display == "")
+					{
+						content.style.display = "block";
+					}
+					else content.style.display = "none";
+				}
+				
+			}
+			
+			
+		});
+	
+	</script>
+	<div style="clear:both"></div>
+<div class="ec ec_faqbox">
+	<div class="faqs" id="questioncontent"> <h2 class="contrast">FAQS</h2>
+	<div class="faqtabs" itemscope itemtype="http://schema.org/FAQPage">
+
+
+		  <?php
+		  
+		  
+			foreach($faqboxes as $faq)
+			{
+			
+				?>
+			 <div itemscope itemtype="http://schema.org/Question" class="faqtab">
+			
+			<div id="faq_tab_title_cat" class="faq_tab_title">
+			  <div class="title"><a href="#" class="faq_title">
+				<h3 itemprop="name text"><?php echo $faq["question"]; ?></h3>
+				</a>
+			  </div>
+			  <div class="img"><a href="#" id="faq_title_img_cat" class="faq_title_img"><i class="fa fa-plus" aria-hidden="true"></i></a> </div>
+			</div>
+			<div id="faq_detail_cat" class="faqdetail" style="display: none">
+			  <div style="display: block" class="txt" itemscope itemtype="http://schema.org/Answer" itemprop="suggestedAnswer acceptedAnswer">
+				  <div itemprop="text">
+					<?php echo $faq["answer content"]; 
+					
+					if($faq["answer link"]) { ?>
+					
+					
+					<p class="readmore"><a itemprop="url" href="<?php echo $faq["answer link"]; ?>" target="blank" class="rmore">Read More</a> </p>
+					
+					<?php
+					
+					}
+					
+					?>
+					
+					
+					</div>
+
+			  </div>
+			</div>
+		  </div>
+		<?php	
+
+			}
+		?>
+		 
+		  
+	  </div>
+	</div>	
+</div>
+<?php } ?>

@@ -1,0 +1,145 @@
+<?php
+
+$_category = $this->getCurrentCategory();
+$_helper    = $this->helper('catalog/output');
+$_footerHeading = $_category->getEnhancedCategoryEndHeading();
+$_footerContent =  $_helper->categoryAttribute($_category, $_category->getEnhancedCategoryEndContent(),'enhanced_category_end_content');
+
+$_footerbgColor = $this->getColour('ec_footer_bgcolor');
+$_footerTextColor = $this->helper('categoryatribute')->colourCheck($_footerbgColor);
+
+if(strlen($_footerHeading) > 0 || strlen($_footerContent) > 0)
+{
+	$_footerTextWidth = $_category->getAttributeText('ec_footer_width') ? str_replace("%","",$_category->getAttributeText('ec_footer_width')) : "66";
+	$_footerTextPosition = $_category->getAttributeText('ec_footer_position') ? $_category->getAttributeText('ec_footer_position') : "left";
+	$_footerBgPosition = $_footerTextPosition == "left" ? "right" : "left";
+	$_footerBgImage = $_category->getEcFooterBgimage() ? $_category->getEcFooterBgimage() : false;
+	$_footerBgSize = $_category->getAttributeText('ec_footer_bgwidth') ? $_category->getAttributeText('ec_footer_bgwidth') : "stretched";
+	$_footerContent = strlen($_footerContent) > 0 && $_footerContent == strip_tags($_footerContent) ? "<p>".$_footerContent."</p>" : $_footerContent;
+	$_footerMobileImage = false;
+	$_footerCTA = $this->getJcf('enhanced_category_end_cta');
+	if($_footerBgImage) {
+		
+		$_footerMobileAlt = strlen($_footerHeading) > 0 ? $_footerHeading : $_category->getName();
+		$_footerBgImageUrl =  Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA)."catalog/category/".$_footerBgImage;
+		$_footerBgImageDimensions = Mage::helper('timage')->init($_footerBgImageUrl)->getOriginalDimensions();
+		$_division = $_footerBgImageDimensions["width"] > 1170 ? $_footerBgImageDimensions["width"] / 1170 : 1;
+		
+		$_footerMinHeight = round(($_footerBgImageDimensions["height"] / $_division),1);
+		$_footerMobileImage = true; 
+		?>
+		
+	<style>
+	
+	
+	div.ec_ff { background-repeat: no-repeat }
+	
+	@media only screen and (min-width:768px) {
+
+		div.ec_ff div.ec_ff_content div.ec_ff_text { padding: 3.5em }	
+		div.ec_ff div.ec_ff_mobile { display: none }
+		
+	}
+		@media only screen and (max-width:767px) { 
+		div.ec_ff { background-image: none !important; }
+		div.ec_ff div.ec_ff_content div.ec_ff_text { padding: 2.5em }
+		div.ec_ff div.ec_ff_mobile { display: block; min-height: auto !important }
+		div.maincontainer div.ec_ff-66 div.ec_ff_content  { width: 100% !important }
+		div.maincontainer div.ec_ff-fixed div.ec_ff_content div.ec_ff_text_black, div.maincontainer div.ec_ff-fixed div.ec_ff_content div.ec_ff_text_white { background-color: transparent; height: auto }
+	}
+	@media only screen and (max-width:1279px) { 
+		div.maincontainer div.ec_ff-33 div.ec_ff_content  { width: 100% }
+		div.ec_ff-fixed div.ec_ff_content div.ec_ff_content_container { height: 100%}
+		div.ec_ff-fixed div.ec_ff_content div.ec_ff_text_black { background-color: rgba(255,255,255,0.6); height: 100% }
+		div.ec_ff-fixed div.ec_ff_content div.ec_ff_text_white { background-color: rgba(0,0,0,0.25); height: 100% }
+	}
+	 
+	div.ec_ff div.ec_ff_content { display: flex; align-items: center }
+	div.ec_ff div.ec_ff_content div.ec_ff_text_white * {color: white }
+	div.ec_ff div.ec_ff_content p, div.ec_ff div.ec_ff_content li { font-size: 14px; line-height: 19px }
+	
+	div.ec_ff div.ec_ff_content p.ptxt2 { margin-top: 15px }
+	div.ec_ff div.ec_ff_content p.ptxt2 a.know-more { 
+		display: inline-block;
+		font-size: 16px;
+		font-weight: bold; 
+		padding: 8px 15px;
+		color: white;
+		font-size: 13px;
+		line-height: 19px;
+		border: solid 1px white;
+	}
+	
+	div.ec_ff { background-repeat: no-repeat; background-position: top right; display: flex;  }
+	div.ec_ff div.ec_ff_mobile img { max-width: 100%; width: 100%; height: auto }
+	div.ec_ff-left { justify-content: flex-start }
+	div.ec_ff-center { justify-content: center }
+	div.ec_ff-right { justify-content: flex-end; background-position: top left }
+	div.ec_ff-66 div.ec_ff_content  { width: 66% }
+	div.ec_ff-33 div.ec_ff_content  { width: 33% }
+	div.ec_ff-100 div.ec_ff_content  { width: 100% }
+	div.ec_ff-stretched {background-size: cover }
+	div.ec_ff-fixed {background-size: auto 100% }
+	div.ec_ff.ec_ff-repeat { background-repeat: repeat }
+	
+	div.ec_ff div.ec_ff_content div.ec_ff_text_black * { color: #333 }
+		
+	</style>
+		
+		<?php	}
+	
+	?>
+	<div class="ec ec_ff ec_ff-<?php echo $_footerTextWidth; ?> ec_ff-<?php echo $_footerTextPosition; ?> ec_ff-<?php echo $_footerBgSize; ?>" style="background-image: url('<?php echo $_footerBgImageUrl;?>'); min-height: <?php echo $_footerMinHeight;?>px; background-color: <?php echo $_footerbgColor; ?>">
+
+		<div class="ec_ff_content txt"><div class="ec_ff_content_container">
+			<?php if($_footerMobileImage) {
+		?>
+		<div class="ec_ff_mobile">
+			<?php echo "<img src=\"{$_footerBgImageUrl}\" alt=\"{$_footerMobileAlt}\" title=\"{$_footerMobileAlt}\" />"; 
+			?>
+		</div>
+		<?php } ?><div class="ec_ff_text ec_ff_text_<?php echo $_footerTextColor; ?>">
+		<?php if(strlen($_footerHeading) > 0) {
+			?>
+			<h2><?php echo $_footerHeading; ?></h2>
+		<?php }
+			
+			 if(strlen($_footerContent) > 0) {
+				 
+				 echo $_footerContent;
+				
+			 } 
+			 if($_footerCTA && count($_footerCTA) > 0 && $_footerCTA[0]["text"])
+			 {
+				$_link = "Read More";
+				$_hiddenText = "";
+				echo '<p class="ptxt2">'; 
+				if($_footerCTA[0]["url"]) {
+				echo "<a href=\"{$_footerCTA[0]["url"]}\" class=\"custom-bg know-more\">" ;
+					
+					$_link = $_footerCTA[0]["url"] ? $_footerCTA[0]["text"] : $_link;
+					
+				}
+				else 
+				{
+					echo "<a id=\"cat_read_more\" class=\"custom-bg know-more\" href=\"#\">";
+					$_hiddenText = "<div id=\"cat_more_content\" style=\"display:none\" class=\"innertxt\">".$_footerCTA[0]["text"]."</div>";
+					
+				}
+				echo $_link."</a></p>".$_hiddenText;
+			 
+			 }
+
+			 
+			 
+			 ?></div>
+			
+		</div>
+
+	</div>
+	</div>
+	
+	
+	<?php	
+	
+}

@@ -1,0 +1,180 @@
+div#jcf-container div.row div#data input.flex, div#jcf-container div.heading div#data h4.flex {
+  display: inline-block;
+  padding: 6px;
+  max-width: calc(100% - 10px);
+  min-width: 30px;
+  border: solid 1px black;
+	flex: 1;
+	margin-right: 3px;
+	border-radius: 3px;
+}
+
+div#jcf-container div#data h4.flex {
+	
+	text-align:center;
+	text-transform: uppercase;
+	background-color: #f0f0f0;
+	margin-bottom: 0px;
+}
+
+
+div#jcf-container div#columns span {
+  border: solid black 1px;
+  display: inline-block;
+  width: 20px;
+  text-align: center
+}
+
+div#jcf-container  {
+  position: relative;
+  width: 100%
+}
+
+div#jcf-container.locked span#add-column {
+  opacity: 0.2;
+}
+
+div#jcf-container div.row, div#jcf-container div.heading {
+  width: 100%;
+  clear: both;
+  position: relative;
+	padding-bottom: 3px;
+}
+
+div#jcf-container div.row div#data, div#jcf-container div.heading div#data {
+  display: flex;
+	align-items: center;
+  max-width: calc(100% - 60px);
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: flex-start
+}
+
+div#jcf-container div.row div#columns {
+  position: absolute;
+  width: 50px;
+  right: 0px;
+  top: 0px
+}
+
+div#jcf-container textarea.jcf-output, div#rbt-container textarea.rbt-output { display: none }
+
+div#jcf-container.maxrows div#controls span#add-row {
+  opacity: 0.2;
+}
+div#jcf-container div#controls span {
+  width: 120px;
+	border: solid 1px black;
+	background-color: darkorange;
+	color: white;
+	text-align: center;
+	padding: 10px;
+	margin-top:5px;
+	display: inline-block;
+}
+
+div#jcf-container textarea {clear:both;width: 100%; min-height: 70px}
+
+
+div#rbt-container div.row div#data textarea.flex,
+div#rbt-container div#data h4.flex {
+  display: inline-block;
+  padding: 6px;
+  max-width: calc(100% - 10px);
+  min-width: 30px;
+  border: solid 1px black;
+  flex: 1;
+  margin-right: 3px;
+  border-radius: 3px;
+}
+
+div#rbt-container div#table.block div.row.divider {
+  margin-bottom: 20px;
+  overflow: auto;
+	height: auto;
+	background-color: transparent;
+}
+
+div#rbt-container div#table.block div.row textarea.flex.content {
+  min-height: 200px;
+}
+
+div#rbt-container div#data h4.flex {
+  text-align: center;
+  text-transform: uppercase;
+  background-color: #f0f0f0;
+  margin-bottom: 0px;
+}
+
+div#rbt-container div#table div.row div#data.table h4.flex {
+  margin-top: 0px;
+  height: 22px;
+  line-height: 22px
+}
+
+div#rbt-container div#table div.row div#data.table textarea.flex {
+  flex-grow: 4;
+  height: 22px;
+}
+
+div#rbt-container div#columns span {
+  border: solid black 1px;
+  display: inline-block;
+  width: 20px;
+  text-align: center
+}
+
+div#rbt-container {
+  position: relative;
+  width: 100%
+}
+
+div#rbt-container.locked span#add-column {
+  opacity: 0.2;
+}
+
+div#rbt-container div.row,
+div#rbt-container div.heading {
+  width: 100%;
+  clear: both;
+  position: relative;
+  padding-bottom: 3px;
+}
+
+div#rbt-container div.row div#data,
+div#rbt-container div.heading div#data {
+  display: flex;
+  align-items: center;
+  max-width: calc(100% - 60px);
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: flex-start
+}
+
+div#rbt-container div.row div#columns {
+  position: absolute;
+  width: 50px;
+  right: 0px;
+  top: 0px
+}
+
+div#rbt-container.maxrows div#controls span#add-row {
+  opacity: 0.2;
+}
+
+div#rbt-container div#controls span {
+  width: 120px;
+  border: solid 1px black;
+  background-color: darkorange;
+  color: white;
+  text-align: center;
+  padding: 10px;
+  margin-top: 5px;
+  display: inline-block;
+}
+
+div#rbt-container textarea#output {
+  clear: both;
+  width: 100%;
+  min-height: 70px
+}

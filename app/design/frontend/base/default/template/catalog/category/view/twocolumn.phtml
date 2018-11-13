@@ -1,0 +1,95 @@
+<?php 
+$_category = $this->getCurrentCategory();
+
+
+$twoColumnBoxes = $this->getRbt("ec_two_column");
+
+if($twoColumnBoxes && count($twoColumnBoxes) && $twoColumnBoxes[0]["content left"])
+{	
+
+ 	foreach($twoColumnBoxes as $twoColumnBox)
+	{
+		
+		// determine if light or dark
+		
+		$_colours = $this->helper('categoryatribute')->colourCheck($twoColumnBox["box colour"]);
+		$_right_col = $twoColumnBox["heading right"] && $twoColumnBox["content right"] && strlen($twoColumnBox["content right"]) > 0;
+?>
+
+<div <?php if($_colours) {
+echo "style=\"background-color: {$twoColumnBox["box colour"]}\" class=\"ec ec_2col txt {$_colours}\"";
+}
+else { 
+	echo " class=\"ec_2col txt black\"";
+}
+	?>>
+ <?php if($twoColumnBox["title"]) { 
+
+ echo "<h2>{$twoColumnBox["title"]}</h2>";
+ 
+ }
+ 
+ ?>
+ <div class="ec ec_2col_container">
+ <div class="ec_2col_l <?php echo $_right_col ? "" : "full"; ?>"> 
+	<?php if($twoColumnBox["heading left"]) { 
+
+ echo "<h3>{$twoColumnBox["heading left"]}</h3>";
+ 
+ }
+ if($twoColumnBox["content left"]) { 
+
+ echo $twoColumnBox["content left"];
+ 
+ }
+ 
+ ?>
+ 
+ </div><?php if($_right_col) { ?>
+ <div class="ec_2col_r">
+ 	<?php if($twoColumnBox["heading right"]) { 
+
+ echo "<h3>{$twoColumnBox["heading right"]}</h3>";
+ 
+ }
+ if($twoColumnBox["content right"]) { 
+
+ echo $twoColumnBox["content right"];
+ 
+ }
+ 
+ ?>
+ </div>
+
+ <?php } ?>
+ </div>
+</div>
+<style>
+div.ec_2col { font-size: 16px; line-height: 21px }
+div.ec_2col > h2 { text-align: center; padding: 40px 0 20px; margin: 0px}
+div.ec_2col div.ec_2col_container div.ec_2col_l {padding: 3% 2% 6% 4% }
+div.ec_2col div.ec_2col_container div.ec_2col_r {padding: 3% 4% 6% 2% }
+
+	@media only screen and (min-width:900px) { 
+
+	div.ec_2col div.ec_2col_container div.ec_2col_l {width: 50%;  }
+	div.ec_2col div.ec_2col_container div.ec_2col_r {width: 50%;  }
+	}
+		@media only screen and (max-width:899px) { 
+			div.ec_2col div.ec_2col_container div.ec_2col_l {width: 100%; padding: 5% }
+	div.ec_2col div.ec_2col_container div.ec_2col_r {width: 100%; padding: 5% }
+	}
+div.ec_2col div.ec_2col_container {display:flex; flex-wrap: wrap} 
+
+div.white h2, div.white h3, div.white h4, div.white p, div.white a, div.white li {color: white}
+div.black h2, div.black h3, div.black h4, div.black p, div.black a, div.black li  {color: black}
+
+</style>
+
+
+
+
+<?php }
+
+
+} ?>
